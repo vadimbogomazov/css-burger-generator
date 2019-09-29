@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import hyphenateStyleName from 'hyphenate-style-name';
 
 class Burger extends Component {
     constructor(props) {
@@ -14,23 +15,13 @@ class Burger extends Component {
     render() {
         return (
             <Fragment>
-                <style>
-
-                </style>
-                <span className="burger" onClick={ this.toggleBurger } style={{
-                    height: `${this.props.height}px`,
-                    width: `${this.props.width}px`
-                }}>
-                <span className="burger__line" style={{
-                    background: `${this.props.color}`,
-                }}></span>
-                <span className="burger__line" style={{
-                    background: `${this.props.color}`,
-                }}></span>
-                <span className="burger__line" style={{
-                    background: `${this.props.color}`,
-                }}></span>
-            </span>
+                <style dangerouslySetInnerHTML={{__html: `${this.props.data.find(item => item.type === this.props.type).css}`}}
+                />
+                <span className="burger" onClick={ this.toggleBurger }>
+                    <span className="burger__line"></span>
+                    <span className="burger__line"></span>
+                    <span className="burger__line"></span>
+                </span>
             </Fragment>
         )
     }

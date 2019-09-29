@@ -89,17 +89,11 @@ textarea {
     &__section {
         color: #000;
         font-size: 1.4rem;
+        height: 30rem;
+        overflow: auto;
         padding: 1.6rem;
         width: calc(100% / 3);
         word-break: break-word;
-
-        overflow: auto;
-
-        // textarea {
-        //     height: 30rem;
-        //     outline: none;
-        //     width: 100%;
-        // }
     }
 }
 
@@ -165,3 +159,4 @@ textarea {
 //         }
 //     }
 // }
+
