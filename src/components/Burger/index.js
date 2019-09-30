@@ -9,7 +9,7 @@ class Burger extends Component {
     }
 
     toggleBurger(e) {
-        e.target.classList.toggle('is-active')
+        e.target.classList.toggle('is-active');
     }
 
     render() {

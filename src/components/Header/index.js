@@ -1,9 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import styles from './Header.scss';
 
 const Header = ({ title }) => (
-    <header className="page-header">
-        <h1 className="page-header__title">{ title }</h1>
+    <header className="Header">
+        <h1 className="Header__title">{ title }</h1>
     </header>
 );
+
+Header.propTypes = {
+  title: PropTypes.string
+};
+
 
 export default Header;

@@ -1,8 +1,10 @@
 import React from 'react';
+import styles from './Footer.scss';
 
 const Footer = props => (
-    <footer className="page-footer">
-        Created by&nbsp;<a href="#">Vadim Bogomazov</a>
+    <footer className="Footer">
+        Buy me a beer
+        {/*Created by&nbsp;<a href="#">Vadim Bogomazov</a>*/}
     </footer>
 );
 

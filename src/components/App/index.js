@@ -1,8 +1,12 @@
 import React from 'react';
+import { MaterialPicker } from 'react-color';
+import Select from 'react-select'
 
 import Header from '../Header';
 import Burger from '../Burger';
 import Footer from '../Footer';
+
+
 
 class App extends React.Component {
     constructor(props) {
@@ -56,9 +60,9 @@ class App extends React.Component {
         });
     }
 
-    changeColor(e) {
+    changeColor(color) {
         this.setState({
-            color: e.target.value
+            color: color.hex
         });
     }
 
@@ -74,10 +78,6 @@ class App extends React.Component {
         });
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        // console.log(nextState);
-    }
-
     copyToClipboard(e) {
         // e.target.select();
         // document.execCommand('copy');
@@ -86,6 +86,10 @@ class App extends React.Component {
 
     render() {
         const { color, height, lineHeight, scss, type, width } = this.state;
+        const options = [
+            { value: 'Squeeze', label: 'Squeeze' },
+            { value: 'Simple', label: 'Simple' },
+        ];
 
         const defaultOpts = `cursor: pointer;
     display: inline-block;
@@ -281,37 +285,47 @@ class App extends React.Component {
             <div className="page-content-wrapper">
                 <aside className="page-sidebar">
                     <section className="section">
-                        <h3>Type</h3>
+                        <div className="section__column section__column_half">
+                            <h3>Width</h3>
+                            <input type="text" maxLength="2" className="input" value={ width } onChange={ this.changeWidth }/>
+                        </div>
 
-                        <select onChange={this.changeType}>
-                            <option value="Squeeze">Squeeze</option>
-                            <option value="Simple">Simple</option>
-                        </select>
+                        <section className="section__column section__column_half">
+                            <h3>Height</h3>
+                            <input type="text" maxLength="2" className="input" value={ height } onChange={ this.changeHeight }/>
+                        </section>
                     </section>
 
                     <section className="section">
-                        <h3>Width</h3>
-                        <input type="range" defaultValue={ width } min="15" max="60" onChange={ this.changeWidth } />
+                        <div className="section__column section__column_half">
+                            <h3>Line height</h3>
+                            <input type="text" maxLength="2" className="input" value={ height } onChange={ this.changeLineHeight } />
+                        </div>
+
+                        <div className="section__column section__column_half">
+                            <h3>SCSS</h3>
+                            <input type="checkbox" value={ scss } onChange={ this.toggleScss } />
+                        </div>
                     </section>
 
                     <section className="section">
-                        <h3>Height</h3>
-                        <input type="range" defaultValue={ height } min="15" max="60" onChange={ this.changeHeight }/>
+                        <div className="section__column">
+                            <h3>Color</h3>
+
+                            <MaterialPicker
+                                fullWidth
+                                color={ color }
+                                onChangeComplete={ this.changeColor }
+                            />
+                        </div>
                     </section>
 
                     <section className="section">
-                        <h3>Line height</h3>
-                        <input type="range" defaultValue={ height } min="1" max="10" onChange={ this.changeLineHeight } />
-                    </section>
+                        <div className="section__column">
+                            <h3>Type</h3>
 
-                    <section className="section">
-                        <h3>Color</h3>
-                        <input type="color" defaultValue={ color } onChange={ this.changeColor }/>
-                    </section>
-
-                    <section className="section">
-                        <h3>SCSS</h3>
-                        <input type="checkbox" value="" onChange={this.toggleScss} />
+                            <Select options={ options } onChange={ this.changeType } />
+                        </div>
                     </section>
                 </aside>
             
