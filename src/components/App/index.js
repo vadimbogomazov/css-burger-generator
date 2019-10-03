@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MaterialPicker } from 'react-color';
 import Select from 'react-select'
 
@@ -6,9 +6,9 @@ import Header from '../Header';
 import Burger from '../Burger';
 import Footer from '../Footer';
 
+import CodeSection from '../CodeSection';
 
-
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -16,27 +16,34 @@ class App extends React.Component {
             color: '#000',
             height: 40,
             lineHeight: 6,
+            padding: 10,
             scss: false,
-            type: 'Squeeze',
-            width: 60,
+            type: {
+                label: 'Squeeze',
+                value: 'Squeeze'
+            },
+            width: 60
         };
 
-        const { color, height, lineHeight, width } = this.state;
+        const { color, height, lineHeight, padding, width } = this.state;
 
         this.html = `&lt;span class="burger js-burger"&gt;
-    &lt;span class="burger__line"&gt;&lt;/span&gt;
-    &lt;span class="burger__line"&gt;&lt;/span&gt;
-    &lt;span class="burger__line"&gt;&lt;/span&gt;
+    &lt;span class="burger__inner"&gt;&lt;/span&gt;
+        &lt;span class="burger__line"&gt;&lt;/span&gt;
+        &lt;span class="burger__line"&gt;&lt;/span&gt;
+        &lt;span class="burger__line"&gt;&lt;/span&gt;
+    &lt;/span&gt;
 &lt;/span&gt;`;
 
         this.js = `document.querySelector('.js-burger').addEventListener('click', function() {
     this.classList.toggle('is-active');
 });`
-
+        
         this.changeType = this.changeType.bind(this);
         this.changeWidth = this.changeWidth.bind(this);
         this.changeHeight = this.changeHeight.bind(this);
         this.changeLineHeight = this.changeLineHeight.bind(this);
+        this.changePadding = this.changePadding.bind(this);
         this.changeColor = this.changeColor.bind(this);
         this.toggleScss = this.toggleScss.bind(this);
         this.copyToClipboard = this.copyToClipboard.bind(this);
@@ -60,15 +67,21 @@ class App extends React.Component {
         });
     }
 
+    changePadding(e) {
+        this.setState({
+            padding: Number(e.target.value)
+        });
+    }
+
     changeColor(color) {
         this.setState({
             color: color.hex
         });
     }
 
-    changeType(e) {
+    changeType(type) {
         this.setState({
-            type: e.target.value
+            type,
         });
     }
 
@@ -85,7 +98,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { color, height, lineHeight, scss, type, width } = this.state;
+        const { color, height, lineHeight, padding, scss, type, width } = this.state;
         const options = [
             { value: 'Squeeze', label: 'Squeeze' },
             { value: 'Simple', label: 'Simple' },
@@ -93,15 +106,20 @@ class App extends React.Component {
 
         const defaultOpts = `cursor: pointer;
     display: inline-block;
-    height: ${height}px;
-    position: relative;
-    width: ${width}px;`
-
+    padding: ${padding}px;`
         this.data = [
             {
                 type: 'Squeeze',
                 css: `.burger {
     ${defaultOpts}
+}
+
+.burger__inner {
+    display: block;
+    height: ${height}px;
+    pointer-events: none;
+    position: relative;
+    width: ${width}px;
 }
 
 .burger__line {
@@ -147,6 +165,14 @@ class App extends React.Component {
                 scss: `.burger {
     ${defaultOpts}
 
+    &__inner {
+        display: block;
+        height: ${height}px;
+        pointer-events: none;
+        position: relative;
+        width: ${width}px;
+    }
+
     &__line {
         background: ${color};
         height: ${lineHeight}px;
@@ -188,13 +214,20 @@ class App extends React.Component {
             }
         }
     }
-}
-                `,
+}`,
             },
             {
                 type: 'Simple',
                 css: `.burger {
     ${defaultOpts}
+}
+
+.burger__inner {
+    display: block;
+    height: ${height}px;
+    pointer-events: none;
+    position: relative;
+    width: ${width}px;
 }
 
 .burger__line {
@@ -234,6 +267,14 @@ class App extends React.Component {
 }`,
         scss: `.burger {
     ${defaultOpts}
+
+    &__inner {
+        display: block;
+        height: ${height}px;
+        pointer-events: none;
+        position: relative;
+        width: ${width}px;
+    }
 
     &__line {
         background: ${color};
@@ -275,8 +316,7 @@ class App extends React.Component {
             }
         }
     }
-}
-            `,
+}`,
         }];
 
         return <div className="page">
@@ -286,34 +326,34 @@ class App extends React.Component {
                 <aside className="page-sidebar">
                     <section className="section">
                         <div className="section__column section__column_half">
-                            <h3>Width</h3>
-                            <input type="text" maxLength="2" className="input" value={ width } onChange={ this.changeWidth }/>
+                            <label htmlFor="width">Width</label>
+                            <input type="number" id="width" maxLength="2" className="input section__field" min="1" max="99" value={ width } onChange={ this.changeWidth }/>
                         </div>
 
                         <section className="section__column section__column_half">
-                            <h3>Height</h3>
-                            <input type="text" maxLength="2" className="input" value={ height } onChange={ this.changeHeight }/>
+                            <label htmlFor="height">Height</label>
+                            <input type="number" id="height" maxLength="2" className="input section__field" min="1" max="99" value={ height } onChange={ this.changeHeight }/>
                         </section>
                     </section>
 
                     <section className="section">
                         <div className="section__column section__column_half">
-                            <h3>Line height</h3>
-                            <input type="text" maxLength="2" className="input" value={ height } onChange={ this.changeLineHeight } />
+                            <label htmlFor="line-height">Line height</label>
+                            <input type="number" id="line-height" maxLength="2" className="input section__field" min="1" max="99" value={ lineHeight } onChange={ this.changeLineHeight } />
                         </div>
 
                         <div className="section__column section__column_half">
-                            <h3>SCSS</h3>
-                            <input type="checkbox" value={ scss } onChange={ this.toggleScss } />
+                            <label htmlFor="padding">Padding</label>
+                            <input type="number" id="padding" maxLength="2" className="input section__field" min="1" max="99" value={ padding } onChange={ this.changePadding } />
                         </div>
                     </section>
 
                     <section className="section">
                         <div className="section__column">
-                            <h3>Color</h3>
+                            <label htmlFor="color">Color</label>
 
                             <MaterialPicker
-                                fullWidth
+                                className="section__field"
                                 color={ color }
                                 onChangeComplete={ this.changeColor }
                             />
@@ -322,9 +362,18 @@ class App extends React.Component {
 
                     <section className="section">
                         <div className="section__column">
-                            <h3>Type</h3>
+                            <label htmlFor="type">Type</label>
 
-                            <Select options={ options } onChange={ this.changeType } />
+                            <Select className="custom-select" value={ type } options={ options } onChange={ this.changeType } />
+                        </div>
+                    </section>
+
+                    <section className="section">
+                        <div className="section__column">
+                            <label htmlFor="scss">SCSS</label>
+                            <div>
+                                <input type="checkbox" id="scss" className="section__field" value={ scss } onChange={ this.toggleScss } />
+                            </div>
                         </div>
                     </section>
                 </aside>
@@ -341,28 +390,9 @@ class App extends React.Component {
                     </div>
 
                     <div className="page-content__sections">
-                        <section className="page-content__section">
-                            <h3 className="page-content__section-title">HTML</h3>
-                            <div className="messages" onClick={(e) => this.copyToClipboard(e)}>
-                                <pre dangerouslySetInnerHTML={{ __html: this.html }}>
-                                </pre>
-                            </div>
-                        </section>
-                        <section className="page-content__section">
-                            <h3 className="page-content__section-title">CSS</h3>
-                            <div className="messages" onClick={(e) => this.copyToClipboard(e)}>
-                                <pre dangerouslySetInnerHTML={{ __html: this.data.find(item => item.type === type)[scss ? 'scss' : 'css'] }} ref={val => this.cssOutput = val}>
-                                </pre>
-                            </div>
-                        </section>
-                        <section className="page-content__section">
-                            <h3 className="page-content__section-title">JavaScript</h3>
-
-                            <div className="messages" onClick={(e) => this.copyToClipboard(e)}>
-                                <pre dangerouslySetInnerHTML={{ __html: this.js }}>
-                                </pre>
-                            </div>
-                        </section>
+                        <CodeSection title="HTML" code={ this.html } />
+                        <CodeSection title="CSS" code={ this.data.find(item => item.type === type.value)[scss ? 'scss' : 'css'] } />
+                        <CodeSection title="JavaScript" code={ this.js } />
                     </div>
                 </main>
             </div>

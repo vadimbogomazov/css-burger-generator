@@ -25,7 +25,7 @@ body {
 body {
     background: var(--bg-color);
     color: var(--font-color);
-    font-family:-apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.5;
 }
 
@@ -40,13 +40,22 @@ body {
 h1,
 h2,
 h3 {
-    font-family: 'Kelly Slab', cursive;
-    font-family: 'Damion', cursive;
+    // font-family: 'Kelly Slab', cursive;
     font-weight: 400;
 }
 
 h1 {
+    font-family: 'Damion', cursive;
     font-size: 2.4rem;
+}
+
+label {
+    cursor: pointer;
+    user-select: none;
+}
+
+textarea {
+    resize: none;
 }
 
 .input {
@@ -56,15 +65,11 @@ h1 {
     border: 0;
     padding: 0.7rem;
     text-align: center;
-    width: 4rem;
+    width: 100%;
 
     &:focus {
         outline: none;
     }
-}
-
-textarea {
-    resize: none;
 }
 
 .page-content-wrapper {
@@ -74,9 +79,10 @@ textarea {
 
 .page-sidebar {
     background: var(--bg-color);
+    flex-shrink: 0;
     padding-left: 3rem;
     padding-right: 3rem;
-    width: 19rem;
+    width: 26rem;
 }
 
 .page-content {
@@ -99,6 +105,7 @@ textarea {
     }
 
     &__sections {
+        border-top: 1px solid #ccc;
         display: flex;
         margin-top: auto;
         width: 100%;
@@ -169,6 +176,11 @@ textarea {
 .section {
     display: flex;
     margin-left: -1.6rem;
+    margin-top: 3.2rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
 
     &__column {
         margin-left: 1.6rem;
@@ -178,4 +190,27 @@ textarea {
             width: calc(50% - 1.6rem);
         }
     }
+
+    &__field {
+        margin-top: 1.2rem;
+    }
+}
+
+.custom-select {
+    color: #000;
+    margin-top: 1.2rem;
+    outline: none;
+}
+
+
+.material-picker {
+    height: auto !important;
+    margin-top: 1.2rem !important;
+    text-align: center;
+    width: 100% !important;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }

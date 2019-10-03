@@ -15,12 +15,14 @@ class Burger extends Component {
     render() {
         return (
             <Fragment>
-                <style dangerouslySetInnerHTML={{__html: `${this.props.data.find(item => item.type === this.props.type).css}`}}
+                <style dangerouslySetInnerHTML={{__html: `${this.props.data.find(item => item.type === this.props.type.value).css}`}}
                 />
-                <span className="burger" onClick={ this.toggleBurger }>
-                    <span className="burger__line"></span>
-                    <span className="burger__line"></span>
-                    <span className="burger__line"></span>
+                <span className="burger js-burger" onClick={ this.toggleBurger }>
+                    <span className="burger__inner">
+                        <span className="burger__line"></span>
+                        <span className="burger__line"></span>
+                        <span className="burger__line"></span>
+                    </span>
                 </span>
             </Fragment>
         )
