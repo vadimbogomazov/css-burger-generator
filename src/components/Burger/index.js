@@ -1,32 +1,26 @@
-import React, { Component, Fragment } from 'react';
-import hyphenateStyleName from 'hyphenate-style-name';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-class Burger extends Component {
-    constructor(props) {
-        super(props);
+const Burger = ({ type }) => {
+    const toggleBurger = e => e.target.classList.toggle('is-active');
 
-        this.toggleBurger = this.toggleBurger.bind(this);
-    }
-
-    toggleBurger(e) {
-        e.target.classList.toggle('is-active');
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <style dangerouslySetInnerHTML={{__html: `${this.props.data.find(item => item.type === this.props.type.value).css}`}}
-                />
-                <span className="burger js-burger" onClick={ this.toggleBurger }>
-                    <span className="burger__inner">
-                        <span className="burger__line"></span>
-                        <span className="burger__line"></span>
-                        <span className="burger__line"></span>
-                    </span>
+    return (
+        <Fragment>
+            <style dangerouslySetInnerHTML={{__html: type}}
+            />
+            <span className="burger js-burger" onClick={ toggleBurger }>
+                <span className="burger__inner">
+                    <span className="burger__line"></span>
+                    <span className="burger__line"></span>
+                    <span className="burger__line"></span>
                 </span>
-            </Fragment>
-        )
-    }
-}
+            </span>
+        </Fragment>
+    )
+};
+
+Burger.propTypes = {
+    type: PropTypes.string
+};
 
 export default Burger;

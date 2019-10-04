@@ -1,0 +1,13 @@
+.Code-section {
+    color: #000;
+    font-size: 1.4rem;
+    height: 30rem;
+    overflow: auto;
+    padding: 1.6rem;
+    width: calc(100% / 3);
+
+    &__code {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+}

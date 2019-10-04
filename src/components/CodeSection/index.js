@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './CodeSection.scss';
+
 const CodeSection = ({ title, code }) => (
-    <section className="page-content__section">
-        <h3 className="page-content__section-title">{ title }</h3>
-        <pre dangerouslySetInnerHTML={{ __html: code }}>
+    <section className="Code-section">
+        <h3 className="Code-section__title">{ title }</h3>
+        <pre className="Code-section__code" dangerouslySetInnerHTML={{ __html: code }}>
         </pre>
     </section>
 );
 
 CodeSection.propTypes = {
-  title: PropTypes.string
+    title: PropTypes.string,
+    code: PropTypes.string
 };
 
 
