@@ -1,5 +1,12 @@
 .Footer {
+    align-items: center;
+    display: flex;
     font-size: 1.2rem;
-    padding: 1.2rem 0;
+    padding: 1.2rem 2.4rem;
     text-align: center;
+    justify-content: space-between;
+
+    &__item {
+
+    }
 }

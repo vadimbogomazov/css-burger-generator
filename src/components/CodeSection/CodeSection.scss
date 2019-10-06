@@ -1,12 +1,19 @@
 .Code-section {
     color: #000;
     font-size: 1.4rem;
-    height: 30rem;
-    overflow: auto;
+    height: 40rem;
+    
     padding: 1.6rem;
+    position: relative;
     width: calc(100% / 3);
 
+    &__title {
+        margin: 0;
+    }
+
     &__code {
+        height: 80%;
+        overflow: auto;
         white-space: pre-wrap;
         word-wrap: break-word;
     }

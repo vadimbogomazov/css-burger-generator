@@ -6,8 +6,9 @@ import styles from './CodeSection.scss';
 const CodeSection = ({ title, code }) => (
     <section className="Code-section">
         <h3 className="Code-section__title">{ title }</h3>
-        <pre className="Code-section__code" dangerouslySetInnerHTML={{ __html: code }}>
-        </pre>
+        <pre className="Code-section__code" dangerouslySetInnerHTML={{ __html: code }}></pre>
+
+        <button>Copy { title }</button>
     </section>
 );
 

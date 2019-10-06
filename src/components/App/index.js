@@ -17,24 +17,28 @@ class App extends Component {
             lineHeight: 6,
             padding: 10,
             scss: false,
+            vars: false,
             type: {
                 label: 'Squeeze',
                 value: 'Squeeze'
+            },
+            copy: {
+                html: false,
+                css: false,
+                js: false
             },
             width: 60
         };
 
         this.html = `&lt;span class="burger js-burger"&gt;
-    &lt;span class="burger__inner"&gt;&lt;/span&gt;
+    &lt;span class="burger__inner"&gt;
         &lt;span class="burger__line"&gt;&lt;/span&gt;
         &lt;span class="burger__line"&gt;&lt;/span&gt;
         &lt;span class="burger__line"&gt;&lt;/span&gt;
     &lt;/span&gt;
 &lt;/span&gt;`;
 
-        this.js = `document.querySelector('.js-burger').addEventListener('click', function() {
-    this.classList.toggle('is-active');
-});`
+        this.js = `document.querySelector('.js-burger').addEventListener('click', function() {\n\tthis.classList.toggle('is-active');\n});`
         
         this.typeOptions = [
             { value: 'Squeeze', label: 'Squeeze' },
@@ -67,6 +71,12 @@ class App extends Component {
         }));
     }
 
+    toggleVars = e => {
+        this.setState(prevState => ({
+            vars: !prevState.vars
+        }));
+    }
+
     copyToClipboard = e => {
         // e.target.select();
         // document.execCommand('copy');
@@ -74,30 +84,47 @@ class App extends Component {
     };
 
     render() {
-        const { color, height, lineHeight, padding, scss, type, width } = this.state;
+        const { color, height, lineHeight, padding, scss, type, vars, width } = this.state;
+
+        let scssVars = '';
+
+        const values = {
+            widthVal: vars ? `$burgerWidth: ${ width }px;` : width,
+            heightVal: vars ? `$burgerHeight: ${ height }px;` : height,
+            lineHeightVal: vars ? `$burgerLineHeight: ${ lineHeight }px;` : lineHeight,
+            paddingVal: vars ? `$burgerPadding: ${ padding }px;` : padding,
+            colorVal: vars ? `$burgerColor: ${ color }px;` : color
+        };
+
+        // const widthVal = vars ? `$burgerWidth: ${ width }px;` : width;
+        // const heightVal = vars ? `$burgerHeight: ${ height }px;` : height;
+        // const lineHeightVal = vars ? `$burgerLineHeight: ${ lineHeight }px;` : lineHeight;
+        // const paddingVal = vars ? `$burgerPadding: ${ padding }px;` : padding;
+        // const colorVal = vars ? `$burgerColor: ${ color }px;` : color;
+
 
         const defaultOpts = `cursor: pointer;
     display: inline-block;
-    padding: ${padding}px;`
+    padding: ${ padding }px;`
         this.data = [
             {
                 type: 'Squeeze',
                 css: `.burger {
-    ${defaultOpts}
+    ${ defaultOpts }
 }
 
 .burger__inner {
     display: block;
-    height: ${height}px;
+    height: ${ height }px;
     pointer-events: none;
     position: relative;
-    width: ${width}px;
+    width: ${ width }px;
 }
 
 .burger__line {
-    background: ${color};
+    background: ${ color };
     border-radius: 3px;
-    height: ${lineHeight}px;
+    height: ${ lineHeight }px;
     left: 0;
     pointer-events: none;
     position: absolute;
@@ -110,7 +137,7 @@ class App extends Component {
 }
 
 .burger__line:nth-child(2) {
-    top: calc(50% - ${lineHeight / 2}px);
+    top: calc(50% - ${ lineHeight / 2 }px);
 }
 
 .burger__line:nth-child(3) {
@@ -122,7 +149,7 @@ class App extends Component {
 }
 
 .burger.is-active .burger__line:nth-child(1) {
-    top: calc(50% - ${lineHeight / 2}px);
+    top: calc(50% - ${ lineHeight / 2 }px);
     transform: rotate(45deg);
 }
 
@@ -131,23 +158,23 @@ class App extends Component {
 }
 
 .burger.is-active .burger__line:nth-child(3) {
-    bottom: calc(50% - ${lineHeight / 2}px);
+    bottom: calc(50% - ${ lineHeight / 2 }px);
     transform: rotate(-45deg);
 }`,
                 scss: `.burger {
-    ${defaultOpts}
+    ${ defaultOpts }
 
     &__inner {
         display: block;
-        height: ${height}px;
+        height: ${ values.heightVal }px;
         pointer-events: none;
         position: relative;
-        width: ${width}px;
+        width: ${ values.widthVal }px;
     }
 
     &__line {
-        background: ${color};
-        height: ${lineHeight}px;
+        background: ${ values.colorVal };
+        height: ${ values.lineHeightVal }px;
         left: 0;
         pointer-events: none;
         position: absolute;
@@ -159,7 +186,7 @@ class App extends Component {
         }
 
         &:nth-child(2) {
-            top: calc(50% - ${lineHeight / 2}px);
+            top: calc(50% - ${ values.lineHeightVal / 2 }px);
         }
 
         &:nth-child(3) {
@@ -172,7 +199,7 @@ class App extends Component {
             transition: bottom .2s, opacity .2s, top .2s, transform .2s .2s;
 
             &:nth-child(1) {
-                top: calc(50% - ${lineHeight / 2}px);
+                top: calc(50% - ${ values.lineHeightVal / 2 }px);
                 transform: rotate(45deg);
             }
 
@@ -181,7 +208,7 @@ class App extends Component {
             }
 
             &:nth-child(3) {
-                bottom: calc(50% - ${lineHeight / 2}px);
+                bottom: calc(50% - ${ values.lineHeightVal / 2 }px);
                 transform: rotate(-45deg);
             }
         }
@@ -191,21 +218,21 @@ class App extends Component {
             {
                 type: 'Simple',
                 css: `.burger {
-    ${defaultOpts}
+    ${ defaultOpts }
 }
 
 .burger__inner {
     display: block;
-    height: ${height}px;
+    height: ${ height }px;
     pointer-events: none;
     position: relative;
-    width: ${width}px;
+    width: ${ width }px;
 }
 
 .burger__line {
-    background: ${color};
+    background: ${ color };
     border-radius: 3px;
-    height: ${lineHeight}px;
+    height: ${ lineHeight }px;
     left: 0;
     pointer-events: none;
     position: absolute;
@@ -217,7 +244,7 @@ class App extends Component {
 }
 
 .burger__line:nth-child(2) {
-    top: calc(50% - ${lineHeight / 2}px);
+    top: calc(50% - ${ lineHeight / 2 }px);
 }
 
 .burger__line:nth-child(3) {
@@ -225,7 +252,7 @@ class App extends Component {
 }
 
 .burger.is-active .burger__line:nth-child(1) {
-    top: calc(50% - ${lineHeight / 2}px);
+    top: calc(50% - ${ lineHeight / 2 }px);
     transform: rotate(45deg);
 }
 
@@ -234,23 +261,23 @@ class App extends Component {
 }
 
 .burger.is-active .burger__line:nth-child(3) {
-    bottom: calc(50% - ${lineHeight / 2}px);
+    bottom: calc(50% - ${ values.lineHeightVal / 2 }px);
     transform: rotate(-45deg);
 }`,
         scss: `.burger {
-    ${defaultOpts}
+    ${ defaultOpts }
 
     &__inner {
         display: block;
-        height: ${height}px;
+        height: ${ values.heightVal }px;
         pointer-events: none;
         position: relative;
-        width: ${width}px;
+        width: ${ values.widthVal }px;
     }
 
     &__line {
-        background: ${color};
-        height: ${lineHeight}px;
+        background: ${ values.colorVal };
+        height: ${ values.lineHeightVal }px;
         left: 0;
         pointer-events: none;
         position: absolute;
@@ -261,7 +288,7 @@ class App extends Component {
         }
 
         &:nth-child(2) {
-            top: calc(50% - ${lineHeight / 2}px);
+            top: calc(50% - ${ values.lineHeightVal / 2 }px);
         }
 
         &:nth-child(3) {
@@ -274,7 +301,7 @@ class App extends Component {
             transition: bottom .2s, opacity .2s, top .2s, transform .2s .2s;
 
             &:nth-child(1) {
-                top: calc(50% - ${lineHeight / 2}px);
+                top: calc(50% - ${ values.lineHeightVal / 2 }px);
                 transform: rotate(45deg);
             }
 
@@ -283,7 +310,7 @@ class App extends Component {
             }
 
             &:nth-child(3) {
-                bottom: calc(50% - ${lineHeight / 2}px);
+                bottom: calc(50% - ${ values.lineHeightVal / 2 }px);
                 transform: rotate(-45deg);
             }
         }
@@ -327,11 +354,12 @@ class App extends Component {
                             <div className="section__column">
                                 <label htmlFor="color">Color</label>
 
-                                <MaterialPicker
-                                    className="section__field"
-                                    color={ color }
-                                    onChangeComplete={ this.changeColor }
-                                />
+                                <div className="section__field">
+                                    <MaterialPicker
+                                        color={ color }
+                                        onChangeComplete={ this.changeColor }
+                                    />
+                                </div>
                             </div>
                         </section>
 
@@ -344,12 +372,19 @@ class App extends Component {
                         </section>
 
                         <section className="section">
-                            <div className="section__column">
+                            <div className="section__column section__column_half">
                                 <label htmlFor="scss">SCSS</label>
                                 <div>
                                     <input type="checkbox" id="scss" className="section__field" value={ scss } onChange={ this.toggleScss } />
                                 </div>
                             </div>
+
+                            {/*<div className="section__column section__column_half">
+                                <label htmlFor="use-vars">Use vars</label>
+                                <div>
+                                    <input type="checkbox" id="use-vars" className="section__field" value={ vars } onChange={ this.toggleVars } disabled={ !scss } />
+                                </div>
+                            </div>*/}
                         </section>
                     </aside>
                 
