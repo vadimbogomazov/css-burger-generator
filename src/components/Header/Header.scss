@@ -1,6 +1,8 @@
-.Header {
-    padding: 0.8rem 0;
+.header {
+    background: var(--bg-color);
+    padding: 1.2rem 0;
     text-align: center;
+    width: 100%;
 
     &__title {
         margin: 0;

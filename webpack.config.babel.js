@@ -12,7 +12,6 @@ const config = {
                 loaders: ['babel-loader'],
             },
             {
-                // test: /\.(css|scss)$/,
                 test: /\.(sa|sc|c)ss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },

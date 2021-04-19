@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const Burger = ({ type }) => {
-    const toggleBurger = e => e.target.classList.toggle('is-active');
+const Burger = ({ css }) => {
+    const toggleBurger = (e) => e.target.classList.toggle('is-active');
 
     return (
-        <Fragment>
-            <style dangerouslySetInnerHTML={{__html: type}}
-            />
+        <>
+            <style dangerouslySetInnerHTML={{ __html: css }} />
+            
             <span className="burger js-burger" onClick={ toggleBurger }>
                 <span className="burger__inner">
                     <span className="burger__line"></span>
@@ -15,12 +15,12 @@ const Burger = ({ type }) => {
                     <span className="burger__line"></span>
                 </span>
             </span>
-        </Fragment>
+        </>
     )
 };
 
 Burger.propTypes = {
-    type: PropTypes.string
+    css: PropTypes.string.isRequired
 };
 
 export default Burger;
