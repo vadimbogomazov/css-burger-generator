@@ -8,13 +8,13 @@ const Burger = ({ css }) => {
         <>
             <style dangerouslySetInnerHTML={{ __html: css }} />
             
-            <span className="burger js-burger" onClick={ toggleBurger }>
+            <button type="button" className="burger js-burger" onClick={ toggleBurger }>
                 <span className="burger__inner">
                     <span className="burger__line"></span>
                     <span className="burger__line"></span>
                     <span className="burger__line"></span>
                 </span>
-            </span>
+            </button>
         </>
     )
 };

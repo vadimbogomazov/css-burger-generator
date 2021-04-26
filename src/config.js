@@ -28,6 +28,7 @@ export const CSS = [{
     --burger-width: %%width%%px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: var(--burger-padding);
@@ -90,6 +91,7 @@ export const CSS = [{
     $burger-width: 40px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: $burger-padding;
@@ -155,6 +157,7 @@ export const CSS = [{
     --burger-width: %%width%%px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: var(--burger-padding);
@@ -212,6 +215,7 @@ scss: `.burger {
     $burger-width: 40px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: $burger-padding;
@@ -272,6 +276,7 @@ scss: `.burger {
     --burger-width: %%width%%px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: var(--burger-padding);
@@ -324,6 +329,7 @@ scss: `.burger {
     $burger-width: 40px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: $burger-padding;
@@ -381,6 +387,7 @@ scss: `.burger {
     --burger-width: %%width%%px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: var(--burger-padding);
@@ -438,6 +445,7 @@ scss: `.burger {
     $burger-width: 40px;
 
     background: #e1e1ff;
+    border: 0;
     cursor: pointer;
     display: inline-block;
     padding: $burger-padding;
