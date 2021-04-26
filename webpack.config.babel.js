@@ -19,6 +19,7 @@ const config = {
     },
     devtool: 'inline-source-map',
     devServer: {
+        hot: true,
         contentBase: './dist',
         port: 8080,
         compress: true,
