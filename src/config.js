@@ -84,11 +84,11 @@ export const CSS = [{
     scss: `.burger {
     $self: &;
 
-    $burger-color: #000;
-    $burger-height: 24px;
-    $burger-lineheight: 2px;
-    $burger-padding: 12px;
-    $burger-width: 40px;
+    $burger-color: %%color%%;
+    $burger-height: %%height%%px;
+    $burger-lineheight: %%lineHeight%%px;
+    $burger-padding: %%padding%%px;
+    $burger-width: %%width%%px;
 
     background: #e1e1ff;
     border: 0;
@@ -125,7 +125,7 @@ export const CSS = [{
     }
 
     &__line {
-        background: #000;
+        background: $burger-color;
         height: $burger-lineheight;
         left: 0;
         pointer-events: none;
@@ -189,13 +189,13 @@ export const CSS = [{
     left: 0;
     pointer-events: none;
     position: absolute;
-    transform-origin: 0 0;
     transition: bottom 0.2s, top 0.2s, transform 0.2s;
     width: 100%;
 }
 
 .burger__line:nth-child(1) {
     top: 0;
+    transform-origin: 0 0;
 }
 
 .burger__line:nth-child(2) {
@@ -204,15 +204,16 @@ export const CSS = [{
 
 .burger__line:nth-child(3) {
     bottom: 0;
+    transform-origin: 0 100%;
 }`,
 scss: `.burger {
     $self: &;
 
-    $burger-color: #000;
-    $burger-height: 24px;
-    $burger-lineheight: 2px;
-    $burger-padding: 12px;
-    $burger-width: 40px;
+    $burger-color: %%color%%;
+    $burger-height: %%height%%px;
+    $burger-lineheight: %%lineHeight%%px;
+    $burger-padding: %%padding%%px;
+    $burger-width: %%width%%px;
 
     background: #e1e1ff;
     border: 0;
@@ -248,12 +249,12 @@ scss: `.burger {
         left: 0;
         pointer-events: none;
         position: absolute;
-        transform-origin: 0 0;
         transition: bottom 0.2s, top 0.2s, transform 0.2s;
         width: 100%;
 
         &:nth-child(1) {
             top: 0;
+            transform-origin: 0 0;
         }
 
         &:nth-child(2) {
@@ -262,6 +263,7 @@ scss: `.burger {
 
         &:nth-child(3) {
             bottom: 0;
+            transform-origin: 0 100%;
         }
     }
 }`
@@ -287,7 +289,7 @@ scss: `.burger {
 }
 
 .burger.is-active .burger__line:nth-child(3) {
-   transform: translateY(calc(-1 * var(--burger-height) / 2 + var(--burger-lineheight) / 2));
+    transform: translateY(calc(-1 * var(--burger-height) / 2 + var(--burger-lineheight) / 2));
 }
 
 .burger__inner {
@@ -322,11 +324,11 @@ scss: `.burger {
     scss: `.burger {
     $self: &;
 
-    $burger-color: #000;
-    $burger-height: 24px;
-    $burger-lineheight: 2px;
-    $burger-padding: 12px;
-    $burger-width: 40px;
+    $burger-color: %%color%%;
+    $burger-height: %%height%%px;
+    $burger-lineheight: %%lineHeight%%px;
+    $burger-padding: %%padding%%px;
+    $burger-width: %%width%%px;
 
     background: #e1e1ff;
     border: 0;
@@ -355,12 +357,12 @@ scss: `.burger {
     }
 
     &__line {
-        background: #000;
+        background: $burger-color;
         height: $burger-lineheight;
         left: 0;
         pointer-events: none;
         position: absolute;
-        transition: bottom 0.2s 0.2s, opacity 0.2s 0.2s, top 0.2s 0.2s, transform 0.2s,;
+        transition: bottom 0.2s 0.2s, opacity 0.2s 0.2s, top 0.2s 0.2s, transform 0.2s;
         width: 100%;
 
         &:nth-child(1) {
@@ -438,11 +440,11 @@ scss: `.burger {
 scss: `.burger {
     $self: &;  
 
-    $burger-color: #000;
-    $burger-height: 24px;
-    $burger-lineheight: 2px;
-    $burger-padding: 12px;
-    $burger-width: 40px;
+    $burger-color: %%color%%;
+    $burger-height: %%height%%px;
+    $burger-lineheight: %%lineHeight%%px;
+    $burger-padding: %%padding%%px;
+    $burger-width: %%width%%px;
 
     background: #e1e1ff;
     border: 0;

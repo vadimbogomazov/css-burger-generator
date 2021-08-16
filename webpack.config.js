@@ -1,8 +1,12 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 const config = {
     entry: './src/index.js',
     output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [
@@ -15,16 +19,22 @@ const config = {
                 test: /\.(sa|sc|c)ss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
-        ]
+        ],
     },
     devtool: 'inline-source-map',
     devServer: {
-        hot: true,
-        contentBase: './dist',
-        port: 8080,
         compress: true,
-        open: true
-    }
+        contentBase: './dist',
+        hot: true,
+        open: true,
+        port: 8080,
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            title: 'CSS Burger Generator',
+        })
+    ],
 };
 
 module.exports = config;

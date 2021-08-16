@@ -40,7 +40,6 @@ body {
 h1,
 h2,
 h3 {
-    // font-family: 'Kelly Slab', cursive;
     font-weight: 400;
 }
 
@@ -109,57 +108,6 @@ textarea {
         width: 100%;
     }
 }
-
-
-// .burger {
-//     cursor: pointer;
-//     display: inline-flex;
-//     height: 4rem;
-//     position: relative;
-//     width: 6rem;
-
-//     &__line {
-//         background: #f00;
-//         height: 6px;
-//         left: 0;
-//         pointer-events: none;
-//         position: absolute;
-//         transition: transform .2s, top .2s .2s, bottom .2s .2s, opacity .2s .2s;
-//         width: 100%;
-        
-//         &:nth-child(1) {
-//             top: 0;
-//         }
-
-//         &:nth-child(2) {
-//             top: calc(50% - 3px);
-//         }
-
-//         &:nth-child(3) {
-//             bottom: 0;
-//         }
-//     }
-
-//     &.is-active {
-//         .burger__line {
-//             transition: transform .2s .2s, top .2s, bottom .2s, opacity .2s;
-
-//             &:nth-child(1){
-//                 transform: rotate(45deg);
-//                 top: calc(50% - 3px);
-//             }
-
-//             &:nth-child(2) {
-//                 opacity: 0;
-//             }
-
-//             &:nth-child(3){
-//                 bottom: calc(50% - 3px);
-//                 transform: rotate(-45deg);
-//             }
-//         }
-//     }
-// }
 
 .section {
     display: flex;
